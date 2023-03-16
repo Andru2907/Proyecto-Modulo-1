@@ -38,7 +38,7 @@ class Interfaz:
         resultado = importando(limit_reg, nom_dep)
 
         # Obtener las llaves del diccionario y crear columnas en la tabla
-        llaves = ["ciudad_municipio_nom", "departamento_nom", "edad", "fuente_tipo_contagio", "estado"]
+        llaves = ["ciudad_municipio_nom", "departamento_nom", "edad", "fuente_tipo_contagio", "estado", "pais_origen"]
         self.table["columns"] = llaves
         
         # Configurar encabezados de columnas
@@ -48,13 +48,14 @@ class Interfaz:
         self.table.column("edad", anchor=tk.CENTER, width=100, stretch=tk.NO)
         self.table.column("fuente_tipo_contagio", anchor=tk.CENTER, width=150, stretch=tk.NO)
         self.table.column("estado", anchor=tk.CENTER, width=100, stretch=tk.NO)
+        self.table.column("pais_origen", anchor=tk.CENTER, width=100, stretch=tk.NO)
 
         self.table.heading("ciudad_municipio_nom", text="Ciudad de ubicación")
         self.table.heading("departamento_nom", text="Departamento")
         self.table.heading("edad", text="Edad")
         self.table.heading("fuente_tipo_contagio", text="Tipo")
         self.table.heading("estado", text="Estado")
-
+        self.table.heading("pais_origen", text="Pais Origen")
         # Eliminar filas existentes en la tabla
         for row in self.table.get_children():
             self.table.delete(row)
@@ -66,4 +67,5 @@ class Interfaz:
             edad = row["edad"]
             tipo = row["fuente_tipo_contagio"]
             estado = row["estado"]
-            self.table.insert(parent="", index=index, text="", values=(ciudad, depto, edad, tipo, estado))
+            pais_origen = ("Sin información")
+            self.table.insert(parent="", index=index, text="", values=(ciudad, depto, edad, tipo, estado, pais_origen))
